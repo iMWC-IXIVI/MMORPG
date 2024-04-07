@@ -5,3 +5,4 @@ venv
 __pycache__/
 */__pacache__/
 Documentation
+mmorpg_site/upload_files/
