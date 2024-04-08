@@ -46,3 +46,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+
+class EmailAccept(models.Model):
+
+    token = models.CharField(max_length=255)
+    username = models.CharField(max_length=255, null=True, blank=True)
+    password = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
