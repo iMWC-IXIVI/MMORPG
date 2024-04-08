@@ -1,0 +1,15 @@
+{% extends 'base_site/index.html'%}
+
+{% block main %}
+<div class="sign-in-conteiner">
+	<div class="sign-in">
+		<h1 class="sign-in-h1">Sign in</h1>
+		<form class="sign-in-form" action="" method="post">
+			{% csrf_token %}
+			<input class="sign-in-input" type="email" name="email" placeholder="Enter your email" align="center">
+			<input class="sign-in-input" type="password" name="password" placeholder="Enter your password" align="center">
+			<button class="sign-in-button" type="submit">Login in</button>
+		</form>
+	</div>
+</div>
+{% endblock main %}

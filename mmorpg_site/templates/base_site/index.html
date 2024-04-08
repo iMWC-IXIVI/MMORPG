@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMORPG Forum</title>
+    <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="conteiner">
+            <span class="logo"><img src="{% static 'css/main/image/logo_MMORPG.png' %}" height="100px" width="100px"></span>
+            <nav>
+                <ul class="navigation">
+                    {% block li %} {% endblock li %}
+                </ul>
+            </nav>
+        </header>
+        {% block main %}
+        <div class="main-conteiner">
+            <div class="main-information">
+                <h1>Welcome to the MMORPG service!!!</h1>
+                <h2>In the promising future, content related to the MMORPG game may appear here, for now we’ll focus on communication.</h2>
+                <p>Communication takes place on the forum, where you leave requests for help, help occurs in a formal setting, testing the system. Thanks for understanding.</p>
+                <p>Now you can register in our system and you can start asking for help on the forum, goodluck mate</p>
+                <button class="botton"><a href="{% url 'sign_in' %}">Sign in</a></button>
+            </div>
+            <div class="main-registration">
+                <form class="form" action="", method="post">
+                    <span class="info-reg">Registration</span>
+                    {% csrf_token %}
+                    <input class="input" type="text" placeholder="Your nickname" name="nickname">
+                    <input class="input" type="email" placeholder="Your email" name="email">
+                    <input class="input" type="password" placeholder="Your password" name="password1">
+                    <input class="input" type="password" placeholder="Your password again" name="password2">
+                    <button class="botton-input" type="submit">Registration</button>
+                </form>
+            </div>
+        </div>
+        {% endblock main %}
+    </div>
+</body>
+</html>
