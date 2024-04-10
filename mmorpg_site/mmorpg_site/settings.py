@@ -87,13 +87,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'ru'  # language Russian
+LANGUAGE_CODE = 'ru'  # language
 
 TIME_ZONE = 'Europe/Moscow'  # time zone Moscow
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 STATIC_URL = 'static/'
 
@@ -207,3 +207,5 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = True
 
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
+LOGIN_URL = '/'
