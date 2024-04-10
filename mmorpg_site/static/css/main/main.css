@@ -1,11 +1,12 @@
 html {
-	overflow: hidden;
 	height: 100%;
 }
-
+/*background-image: url("image/background.svg"), linear-gradient(180deg, rgba(0,215,255,1) 26%, rgba(255,166,0,1) 100%);*/
 body {
-	background-image: url("image/background.svg"), linear-gradient(180deg, rgba(0,215,255,1) 26%, rgba(255,166,0,1) 100%);
+	background-color: red; /* For browsers that do not support gradients */
+  	background-image:url("image/background.svg"), radial-gradient(circle, rgba(255,166,0,1) 10%, rgba(0,215,255,1) 110%);
 	width: 100%;
+	overflow: auto;
 	color: green;
 }
 
@@ -39,7 +40,7 @@ header nav ul li {
 
 header nav ul li a {
 	color: #DB7093;
-	font-size: 20px;
+	font-size: 50px;
 	font-weight: bold;
 }
 
@@ -189,4 +190,129 @@ header nav ul li.botton a:hover {
 	pasdding: 10px;
 
 	font-size: 20px;
+}
+
+.information h1 {
+	display: block;
+	align-content: center;
+	text-align: center;
+	font-size: 60px;
+	color: orange;
+}
+
+table.table-post {
+	width: 100%;
+	border: 1px solid;
+	border-color: white;
+}
+
+table.table-post th.table-post-th {
+	border: 1px solid;
+	border-color: white;
+	color: #fff;
+	background-color: rgba(117,116,130,0.5);
+}
+
+table th a {
+	color: white;
+}
+
+table th a:hover {
+	color: orange;
+}
+
+h1.bd-title {
+	color: red !important;
+}
+
+h1.bd-text {
+	color: navajowhite !important;
+}
+
+.wrapper h1, h2 {
+	text-align: center;
+	color: navajowhite;
+}
+
+span.create-new-post {
+	display: block;
+	color: darkorange;
+	width: 90%;
+	text-align: right;
+	font-size: 30px;
+}
+
+span.create-new-post a {
+	color: #fff;
+	border: 1px solid;
+	border-radius: 10px;
+	background-color: rgba(28,12,204,1.0);
+	transition: background-color 1s ease-in-out;
+}
+
+span.create-new-post a:hover {
+	color: blueviolet;
+	background-color: rgba(100,12,0,1.0);
+}
+
+form.add-post-form {
+	display: block;
+	height: 100%;
+	position: relative;
+	transform: translateX(20%);
+	margin: 0 auto;
+	align-content: center;
+}
+
+form.add-post-form p {
+	position: relative;
+	left: 300px;
+	font-size: 25px;
+	color: red;
+}
+
+form.add-post-form .add-post-button {
+	position: relative;
+	width: 10%;
+	left: 18%;
+	block-size: 50px;
+	color: orangered;
+	background-color: limegreen;
+	transition: background-color 0.5s ease-in-out;
+}
+
+form.add-post-form .add-post-button:hover {
+	background-color: blueviolet;
+	color: white;
+}
+
+.ck-editor-container {
+	width: 50% !important;
+	color: red;
+}
+
+figure.image img {
+	width: 500px !important;
+	height: 300px !important;
+}
+
+span.post-detail-update {
+	display: block;
+	color: darkorange;
+	width: 90%;
+	text-align: right;
+	font-size: 30px;
+}
+
+span.post-detail-update a {
+	color: #fff;
+	border: 1px solid;
+	border-radius: 10px;
+	background-color: rgba(28,12,204,1.0);
+	transition: background-color 1s ease-in-out;
+}
+
+span.post-detail-update a:hover {
+	color: blueviolet;
+	background-color: rgba(100,12,0,1.0);
 }

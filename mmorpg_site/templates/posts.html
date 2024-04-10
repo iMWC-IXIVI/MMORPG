@@ -1,4 +1,28 @@
 {% extends 'base_site/index.html' %}
 
+{% block li %}
+<li><a href="{% url 'list_post' %}">Post list</a></li>
+<li><a href="{% url 'logout' %}">Logout</a></li>
+{% endblock li %}
+
 {% block main %}
+<div>
+	<span class="create-new-post"><a href="{% url 'add_post' %}">Create new post</a></span>
+	<table class="table-post">
+		<tr class="table-post-tr">
+			<th class="table-post-th">№</th>
+			<th class="table-post-th">Title post (click)</th>
+			<th class="table-post-th">Category post</th>
+			<th class="table-post-th">Time post</th>
+		</tr>
+		{% for post in posts %}
+		<tr class="table-post-tr">
+			<th class="table-post-th">{{ post.pk }}</th>
+			<th class="table-post-th"><a href="{% url 'detail_post' post.pk %}">{{ post.title }}</a></th>
+			<th class="table-post-th">{{ post.category }}</th>
+			<th class="table-post-th">{{ post.date_creation }}</th>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
 {% endblock main %}

@@ -3,8 +3,10 @@ import os
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import TemplateView
-from django.contrib.auth import authenticate, login
-from django.core.mail import send_mail
+from django.contrib.auth import authenticate, login, logout
+from django.core.mail.message import EmailMultiAlternatives
+from django.template.loader import render_to_string
+
 
 from dotenv import load_dotenv
 
@@ -35,15 +37,22 @@ class MainView(TemplateView):
 
         EmailAccept.objects.create(token=token, username=user, password=password_1, email=email)
 
-        send_mail(subject='Hello',
-                  message=ref_token,
-                  recipient_list=[email],
-                  from_email='')
+        message = EmailMultiAlternatives(subject="activate register",
+                                         to=[email],
+                                         body='Activate your profile')
 
-        return redirect('register')
+        html_content = (f'''<h1>Hello {user}</h1>
+                        <p>You have registered on the forum.
+                        Please <a href="{ref_token}">activate</a> your profile</p>''')
+
+        message.attach_alternative(html_content, 'text/html')
+        message.send()
+
+        return render(request, 'information_email.html')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['is_not_auth'] = not self.request.user.is_authenticated
 
         return context
 
@@ -81,12 +90,24 @@ class SignInView(TemplateView):
             ref_token = f'{os.getenv("REF_TOKEN_IN")}{token}/'
             EmailAccept.objects.create(token=token, password=password, email=email)
 
-            send_mail(subject='Accept',
-                      message=ref_token,
-                      from_email='',
-                      recipient_list=[email])
+            message = EmailMultiAlternatives(subject="activate register",
+                                             to=[email],
+                                             body='Activate your profile')
 
-        return redirect('sign_in')
+            html_content = (f'''<h1>Hello {user}</h1>
+                                <p>You are visiting our forum.
+                                Please <a href="{ref_token}">activate</a> your profile</p>''')
+
+            message.attach_alternative(html_content, 'text/html')
+            message.send()
+
+        return render(request, 'information_email.html')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_not_auth'] = not self.request.user.is_authenticated
+
+        return context
 
 
 def accept_in_mail(request, **kwargs):
@@ -103,3 +124,8 @@ def accept_in_mail(request, **kwargs):
     data.delete()
 
     return redirect('list_post')
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('sign_in')

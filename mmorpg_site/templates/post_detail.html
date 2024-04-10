@@ -1,0 +1,9 @@
+{% extends 'posts.html' %}
+
+{% block main %}
+	<div>
+		<span class="post-detail-update"><a href="{% url 'update_post' post.pk %}">Post update</a></span>
+		<h1 class="bd-title" align="center">{{ post.title|safe }}</h1>
+		<h1 class="bd-text" align="center">{{ post.text|safe }}</h1>
+	</div>
+{% endblock main %}

@@ -1,6 +1,7 @@
 {% extends 'base_site/index.html'%}
 
 {% block main %}
+{% if is_not_auth %}
 <div class="sign-in-conteiner">
 	<div class="sign-in">
 		<h1 class="sign-in-h1">Sign in</h1>
@@ -12,4 +13,5 @@
 		</form>
 	</div>
 </div>
+{% endif %}
 {% endblock main %}

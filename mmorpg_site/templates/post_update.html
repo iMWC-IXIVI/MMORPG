@@ -1,0 +1,10 @@
+{% extends 'posts.html' %}
+
+{% block main %}
+    <form class="add-post-form" action="" method="post">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button class="add-post-button" type="submit">Create</button>
+    </form>
+{% endblock main %}
