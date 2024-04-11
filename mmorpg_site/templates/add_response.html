@@ -1,0 +1,12 @@
+{% extends 'posts.html' %}
+
+
+{% block main %}
+<form class="form-response-create" action="" method="POST">
+	<div class="response-create-conteiner">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button class="button-response-create" type="submit">Create</button>
+	</div>
+</form>
+{% endblock main %}

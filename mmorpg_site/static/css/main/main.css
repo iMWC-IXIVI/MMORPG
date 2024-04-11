@@ -1,7 +1,7 @@
 html {
 	height: 100%;
 }
-/*background-image: url("image/background.svg"), linear-gradient(180deg, rgba(0,215,255,1) 26%, rgba(255,166,0,1) 100%);*/
+
 body {
 	background-color: red; /* For browsers that do not support gradients */
   	background-image:url("image/background.svg"), radial-gradient(circle, rgba(255,166,0,1) 10%, rgba(0,215,255,1) 110%);
@@ -315,4 +315,77 @@ span.post-detail-update a {
 span.post-detail-update a:hover {
 	color: blueviolet;
 	background-color: rgba(100,12,0,1.0);
+}
+
+div.button-posts {
+	width: 90%;
+	margin: 0 auto;
+	padding: 2%;
+}
+
+.button-posts div.nav-posts {
+	display: flex;
+	width: 30%;
+	float: right;
+	justify-content: space-between;
+}
+
+div.nav-posts .response-create {
+	display: block;
+	color: darkorange;
+	width: 90%;
+	text-align: right;
+	font-size: 30px;
+}
+
+div.nav-posts .response-create a {
+	color: #fff;
+	border: 1px solid;
+	border-radius: 10px;
+	background-color: rgba(28,12,204,1.0);
+	transition: background-color 1s ease-in-out;
+}
+
+div.nav-posts .response-create a:hover {
+	color: blueviolet;
+	background-color: rgba(100,12,0,1.0);
+}
+
+form.form-response-create {
+	width: 40%;
+	position: relative;
+	top: 75px;
+	margin: 0 auto;
+}
+
+div.response-create-conteiner textarea#id_text {
+	resize: none;
+	font-size: 30px;
+}
+
+div.response-create-conteiner label {
+	display: block;
+	position: relative;
+	right: 50px;
+	width: 100%;
+	text-align: center;
+	font-size: 30px;
+	color: gray;
+}
+
+div.response-create-conteiner .button-response-create {
+	position: relative;
+	width: 50%;
+	font-size: 30px;
+	left: 150px;
+	border-radius: 10px;
+	background-color: rgba(28,12,204,1.0);
+	transition: background-color 1s ease-in-out;
+	color: white;
+}
+
+div.response-create-conteiner .button-response-create:hover {
+	background-color: rgba(200,12,10,1.0);
+	transition: background-color 1s ease-in-out;
+	color: orange;
 }

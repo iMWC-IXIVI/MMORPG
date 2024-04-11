@@ -87,7 +87,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'ru'  # language
+LANGUAGE_CODE = 'en'  # language
 
 TIME_ZONE = 'Europe/Moscow'  # time zone Moscow
 

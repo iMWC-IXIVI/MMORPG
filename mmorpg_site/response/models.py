@@ -5,10 +5,10 @@ from user.models import CustomUser
 
 
 class Response(models.Model):
-    response = models.BooleanField(default=False, verbose_name='Response')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    date_creation = models.DateTimeField(auto_now_add=True)
+    text = models.CharField(max_length=100, verbose_name='Response')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Post')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='User')
+    date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Time created')
 
     USERNAME_FIELD = 'user'
 

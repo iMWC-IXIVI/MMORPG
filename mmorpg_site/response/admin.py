@@ -16,8 +16,8 @@ class AdminResponseModel(ResponseAdmin):
     form = AdminResponseCreationForm
     add_form = AdminResponseChangedForm
     change_password_form = None
-    list_display = ['response', 'user', 'post']
-    list_filter = ['response', 'user']
+    list_display = ['text', 'user', 'post']
+    list_filter = ['text', 'user']
     search_fields = ['user']
     ordering = ['date_creation']
     filter_horizontal = []

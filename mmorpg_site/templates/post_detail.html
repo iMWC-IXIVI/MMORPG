@@ -2,7 +2,12 @@
 
 {% block main %}
 	<div>
-		<span class="post-detail-update"><a href="{% url 'update_post' post.pk %}">Post update</a></span>
+		<div class="button-posts">
+			<div class="nav-posts">
+				<span class="response-create"><a href="{% url 'response_create' post.pk %}">Response create</a></span>
+				<span class="response-create"><a href="{% url 'update_post' post.pk %}">Post update</a></span>
+			</div>
+		</div>
 		<h1 class="bd-title" align="center">{{ post.title|safe }}</h1>
 		<h1 class="bd-text" align="center">{{ post.text|safe }}</h1>
 	</div>
