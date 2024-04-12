@@ -1,0 +1,18 @@
+{% extends 'posts.html' %}
+
+{% block main %}
+<div class="response-detail-conteiner">
+	<span class="response-detail-span-1">Detail response</span>
+	<div class="response-detail-ref">
+		<a href="{% url 'delete_response' response.pk %}">Delete response</a>
+		{% if response_not_active %}
+		<a href="{% url 'activate_response' response.pk %}">Response activate</a>
+		{% endif %}
+	</div>
+	<div class="response-detail-div-con">
+		<h1 class="response-detail-h">Response text: {{ response.text }}</h1> 
+		<h1 class="response-detail-h">Response sender nickname: {{ response.user }}</h1>
+		<h1 class="response-detail-h">Response activate: {{ response.active }}</h1>
+	</div>
+</div>
+{% endblock main %}

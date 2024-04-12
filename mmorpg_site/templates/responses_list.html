@@ -1,0 +1,49 @@
+{% extends "posts.html" %}
+
+{% block main %}
+
+<div class="response-div-table-conteiner">
+    <form class="response-table-form" method="GET", action="">
+        {{ filter.form.as_p }}
+        <input class="response-input-form" type="submit">
+    </form>
+    <table class="response-table-con">
+        <tr class="response-tr">
+            <th>ID</th>
+            <th>POST TITLE (click)</th>
+            <th>CATEGORY</th>
+            <th>USER</th>
+            <th>CREATION</th>
+        </tr>
+        {% for response in responses %}
+        <tr>
+            <th>{{ response.pk }}</th>
+            <th><a href="{% url 'detail_response' response.pk %}">{{ response.post.title }}</a></th>
+            <th>{{ response.post.category }}</th>
+            <th>{{ response.user }}</th>
+            <th>{{ response.date_creation }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="paginate">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">1</a>
+            {% if page_obj.previous_page_number != 1 %}
+                ...
+                <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+            {% endif %}
+        {% endif %}
+
+        {{ page_obj.number }}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+            {% if paginator.num_pages != page_obj.next_page_number %}
+                ...
+                <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock main %}

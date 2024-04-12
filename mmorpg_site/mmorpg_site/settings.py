@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'response.apps.ResponseConfig',
     # other lib apps
-    'django_ckeditor_5'
+    'django_ckeditor_5',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -209,3 +210,5 @@ EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 LOGIN_URL = '/'
+
+FILTERS_EMPTY_CHOICE_LABEL = 'All entries'

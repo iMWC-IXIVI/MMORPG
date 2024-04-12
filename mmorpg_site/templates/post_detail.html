@@ -4,8 +4,10 @@
 	<div>
 		<div class="button-posts">
 			<div class="nav-posts">
+				{% if create_response %}
 				<span class="response-create"><a href="{% url 'response_create' post.pk %}">Response create</a></span>
-				<span class="response-create"><a href="{% url 'update_post' post.pk %}">Post update</a></span>
+				}
+				{% endif %}
 			</div>
 		</div>
 		<h1 class="bd-title" align="center">{{ post.title|safe }}</h1>

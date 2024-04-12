@@ -7,6 +7,7 @@ from user.models import CustomUser
 class Response(models.Model):
     text = models.CharField(max_length=100, verbose_name='Response')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Post')
+    active = models.BooleanField(default=False)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='User')
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Time created')
 

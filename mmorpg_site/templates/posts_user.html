@@ -1,0 +1,41 @@
+{% extends 'posts.html' %}
+
+{% block main %}
+<div>
+	<table class="table-post">
+		<tr class="table-post-tr">
+			<th class="table-post-th">№</th>
+			<th class="table-post-th">Title post (click)</th>
+			<th class="table-post-th">Category post</th>
+			<th class="table-post-th">Time post</th>
+		</tr>
+		{% for post in posts %}
+		<tr class="table-post-tr">
+			<th class="table-post-th">{{ post.pk }}</th>
+			<th class="table-post-th"><a href="{% url 'post_user_detail' post.pk %}">{{ post.title }}</th>
+			<th class="table-post-th">{{ post.category }}</th>
+			<th class="table-post-th">{{ post.date_creation}}</th>
+		</tr>
+		{% endfor %}
+	</table>
+	<div class="paginate">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">1</a>
+            {% if page_obj.previous_page_number != 1 %}
+                ...
+                <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+            {% endif %}
+        {% endif %}
+
+        {{ page_obj.number }}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+            {% if paginator.num_pages != page_obj.next_page_number %}
+                ...
+                <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endblock main %}

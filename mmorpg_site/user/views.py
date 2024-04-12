@@ -33,20 +33,7 @@ class MainView(TemplateView):
 
         token = f'{request.POST["csrfmiddlewaretoken"]}+{RANDOM_STRING}'
 
-        ref_token = f'{os.getenv("REF_TOKEN")}{token}/'
-
         EmailAccept.objects.create(token=token, username=user, password=password_1, email=email)
-
-        message = EmailMultiAlternatives(subject="activate register",
-                                         to=[email],
-                                         body='Activate your profile')
-
-        html_content = (f'''<h1>Hello {user}</h1>
-                        <p>You have registered on the forum.
-                        Please <a href="{ref_token}">activate</a> your profile</p>''')
-
-        message.attach_alternative(html_content, 'text/html')
-        message.send()
 
         return render(request, 'information_email.html')
 
@@ -87,19 +74,8 @@ class SignInView(TemplateView):
 
         if user:
             token = f'{request.POST["csrfmiddlewaretoken"]}+{RANDOM_STRING}'
-            ref_token = f'{os.getenv("REF_TOKEN_IN")}{token}/'
+
             EmailAccept.objects.create(token=token, password=password, email=email)
-
-            message = EmailMultiAlternatives(subject="activate register",
-                                             to=[email],
-                                             body='Activate your profile')
-
-            html_content = (f'''<h1>Hello {user}</h1>
-                                <p>You are visiting our forum.
-                                Please <a href="{ref_token}">activate</a> your profile</p>''')
-
-            message.attach_alternative(html_content, 'text/html')
-            message.send()
 
         return render(request, 'information_email.html')
 
