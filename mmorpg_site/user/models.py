@@ -48,6 +48,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return self.username
 
 
+class Subscribe(models.Model):
+    user = models.ForeignKey('CustomUser', on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
+
+
 class EmailAccept(models.Model):
 
     token = models.CharField(max_length=255)

@@ -240,8 +240,13 @@ h1.bd-text {
 	color: navajowhite;
 }
 
+div.create-new-post-con {
+	width: 90%;
+	margin: 0px auto;
+	text-align: right;
+}
+
 span.create-new-post {
-	display: block;
 	color: darkorange;
 	width: 90%;
 	text-align: right;
@@ -485,6 +490,7 @@ div.paginate {
 	font-size: 30px;
 	text-align: center;
 	color: white;
+	text-decoration: underline;
 }
 
 div.paginate a {
