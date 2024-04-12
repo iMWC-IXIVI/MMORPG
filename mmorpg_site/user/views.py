@@ -1,16 +1,13 @@
-import os
-
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login, logout
-from django.core.mail.message import EmailMultiAlternatives
-from django.template.loader import render_to_string
+from django.contrib.auth.decorators import login_required
 
 
 from dotenv import load_dotenv
 
-from .models import CustomUser, EmailAccept
+from .models import CustomUser, EmailAccept, Subscribe
 
 from .constant import RANDOM_STRING
 
@@ -102,6 +99,13 @@ def accept_in_mail(request, **kwargs):
     return redirect('list_post')
 
 
+@login_required
 def logout_user(request):
     logout(request)
     return redirect('sign_in')
+
+
+@login_required
+def add_subscribe(request):
+    Subscribe.objects.create(user_id=request.user.pk)
+    return redirect('list_post')

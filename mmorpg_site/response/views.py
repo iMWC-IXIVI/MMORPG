@@ -2,10 +2,9 @@ from django.shortcuts import redirect
 from django.views.generic import CreateView, ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.core.mail import EmailMultiAlternatives
+from django.contrib.auth.decorators import login_required
 
 from .models import Response
-from post.models import Post
 from .forms import ResponseCreateForm
 from .filters import FilterResponse
 
@@ -75,6 +74,7 @@ class ResponseDetail(LoginRequiredMixin, DetailView):
         return context
 
 
+@login_required
 def delete_response(request, **kwargs):
 
     response = Response.objects.get(pk=kwargs['pk'])
@@ -82,6 +82,7 @@ def delete_response(request, **kwargs):
     return redirect('my_response')
 
 
+@login_required
 def activate_response(request, **kwargs):
 
     response = Response.objects.get(pk=kwargs['pk'])

@@ -9,7 +9,12 @@
 
 {% block main %}
 <div>
-	<span class="create-new-post"><a href="{% url 'add_post' %}">Create new post</a></span>
+	<div class="create-new-post-con">
+		<span class="create-new-post"><a href="{% url 'add_post' %}">Create new post</a></span>
+		{% if is_not_subscribe %}
+		<span class="create-new-post"><a href="{% url 'add_subscribe' %}">Subcribes weekly posts</a></span>
+		{% endif %}
+	</div>
 	<table class="table-post">
 		<tr class="table-post-tr">
 			<th class="table-post-th">№</th>

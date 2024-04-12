@@ -1,13 +1,12 @@
 import datetime
 
-from django.shortcuts import render
-from django.template.response import TemplateResponse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
 from .forms import PostCreationForm
 from .models import Post
+from user.models import Subscribe
 
 
 class PostList(LoginRequiredMixin, ListView):
@@ -19,6 +18,8 @@ class PostList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        context['is_not_subscribe'] = not Subscribe.objects.filter(user_id=self.request.user.pk)
 
         return context
 

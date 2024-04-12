@@ -91,6 +91,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en'  # language
 
 TIME_ZONE = 'Europe/Moscow'  # time zone Moscow
+CELERY_TIMEZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -212,3 +213,9 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 LOGIN_URL = '/'
 
 FILTERS_EMPTY_CHOICE_LABEL = 'All entries'
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
