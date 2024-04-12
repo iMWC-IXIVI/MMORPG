@@ -1,0 +1,16 @@
+{% extends 'posts.html' %}
+
+{% block main %}
+<div align="center" class="user-profile">
+    <span class="response-detail-span-1">My profile</span>
+    <div class="response-detail-ref">
+        <a href="{% url 'user_profile_update' user.pk %}">Update profile</a>
+    </div>
+    {% if user.image%}
+        <img src="{{ user.image.url }}" width='300' height='150'>
+    {% endif %}
+    <p class="user-p">Nickname: {{ user.username }}</p>
+    <p class="user-p">Your email: {{ user.email }}</p>
+    <p class="user-p">Data creation: {{ user.date_creation }}</p>
+</div>
+{% endblock main%}

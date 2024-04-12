@@ -1,3 +1,5 @@
+"""Категория ролей на форуме"""
+
 TANKS = 'Tanks'
 HEALERS = 'Healers'
 DAMAGE_DEALERS = 'DD'

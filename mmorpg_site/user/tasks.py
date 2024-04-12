@@ -10,6 +10,7 @@ from .models import Subscribe
 
 @shared_task
 def every_monday_newsletter():
+    """Еженедельная рассылка на количество постов за неделю"""
     today = date.today()
 
     while today.weekday() != 0:

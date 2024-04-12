@@ -7,7 +7,8 @@ from .models import Response
 
 @receiver(post_save, sender=Response)
 def response_created(sender, instance, created, **kwargs):
-
+    """Во время создании отклика приходит письмо на почту создателю поста.
+    Во время активации отклика приходит письмо на почту создателя отклика"""
     if created:
         subject = 'You have response'
         email = instance.post.user.email

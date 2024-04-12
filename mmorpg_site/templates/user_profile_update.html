@@ -1,0 +1,10 @@
+{% extends 'posts.html' %}
+
+{% block main %}
+<span class="span-user-profile">Update your profile</span>
+<form class="form-user-update" action="" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="file">Update</button>
+</form>
+{% endblock main %}

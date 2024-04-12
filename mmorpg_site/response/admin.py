@@ -6,6 +6,7 @@ from .forms import AdminResponseChangedForm, AdminResponseCreationForm
 
 
 class AdminResponseModel(ResponseAdmin):
+    """Определение админ панели для откликов"""
     add_form_template = 'admin_add/add_form.html'
     fieldsets = [
         [None, {'fields': ['response']}],
@@ -23,4 +24,4 @@ class AdminResponseModel(ResponseAdmin):
     filter_horizontal = []
 
 
-admin.site.register(Response, AdminResponseModel)
+admin.site.register(Response, AdminResponseModel)  # Регистрация модели Response в админ панели

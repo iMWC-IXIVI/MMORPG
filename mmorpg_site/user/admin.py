@@ -9,6 +9,7 @@ from .models import CustomUser
 
 
 class AdminUserModel(UserAdmin):
+    """Переопределение админ сайта во время CRUD операций над моделями"""
     form = AdminUserChangeForm
     add_form = AdminUserCreationForm
     list_display = ['email', 'username', 'date_creation', 'get_image']
@@ -26,6 +27,7 @@ class AdminUserModel(UserAdmin):
                              'fields': ['email', 'username', 'password']})]
 
     def get_image(self, instance):
+        """Вывод картинки в админ панели при ее наличии"""
         if instance.image:
             return mark_safe(f'<img src={instance.image.url} width="250", height="100"')
         return ''
@@ -33,6 +35,6 @@ class AdminUserModel(UserAdmin):
     get_image.short_description = 'My image'
 
 
-admin.site.register(CustomUser, AdminUserModel)
+admin.site.register(CustomUser, AdminUserModel)  # Регистрация модели User и админ панели
 
-admin.site.unregister(Group)
+admin.site.unregister(Group)  # Деактивация модели групп

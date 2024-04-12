@@ -3,7 +3,9 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 
 
 class CustomUserManager(BaseUserManager):
+    """Нужен при определении базовой модели пользователя"""
     def create_user(self, username, email, password=None, **kwargs):
+        """Создание базового пользователя (без прав)"""
 
         if not username:
             raise ValueError('Profile needed username')
@@ -20,6 +22,7 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, email, password):
+        """Создание не базового пользователя (с правами)"""
 
         user = self.create_user(username, email, password=password)
         user.is_staff = True
@@ -30,6 +33,12 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    """Переопределение базовой модели пользователя.
+    Так как форум является игровым, пользовательское имя и почта - уникальные поля.
+    Дата создания поста - нужна для возможного функционала по типу годовщин и тому подобное
+    Дата времени изменения пароля для внутреннего логирования и безопасности
+    Картинка - у каждого пользователя может быть игровая картинка
+    STAFF и SUPERUSER - нужны для администрирования системы (выдачи ограничений)"""
     username = models.CharField(unique=True, max_length=255, verbose_name='Nickname')
     email = models.EmailField(unique=True, max_length=255, verbose_name='Email')
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Time create')
@@ -49,12 +58,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Subscribe(models.Model):
+    """Подписка пользователей на еженедельную рассылку"""
     user = models.ForeignKey('CustomUser', on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
 
 
 class EmailAccept(models.Model):
-
+    """Прием токенов, игрового имени, почты и пароля, для регистрации и аутентификации"""
     token = models.CharField(max_length=255)
     username = models.CharField(max_length=255, null=True, blank=True)
     password = models.CharField(max_length=255)

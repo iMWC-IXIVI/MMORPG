@@ -5,6 +5,7 @@ from .models import CustomUser
 
 
 class AdminUserCreationForm(forms.ModelForm):
+    """Форма для создания пользователя в админ панели"""
     email = forms.EmailField(max_length=255,
                              label='Email',
                              widget=forms.EmailInput,
@@ -35,6 +36,7 @@ class AdminUserCreationForm(forms.ModelForm):
 
 
 class AdminUserChangeForm(forms.ModelForm):
+    """Изменение пользователя в админ панели"""
     password = ReadOnlyPasswordHashField()
 
     image = forms.ImageField(label='Change image',
@@ -43,3 +45,13 @@ class AdminUserChangeForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('email', 'password', 'image', 'username', 'is_staff', 'is_superuser')
+
+
+class UserUpdateForm(forms.ModelForm):
+    """Изменение пользователя из страницы профиля пользователя"""
+
+    image = forms.ImageField(widget=forms.FileInput, help_text='')
+
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'image']
