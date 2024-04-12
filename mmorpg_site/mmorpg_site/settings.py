@@ -4,15 +4,15 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv()  # Выгрузка переменных окружений
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY')  # secret key django
+SECRET_KEY = os.getenv('SECRET_KEY')  # Секретный ключ django
 
 DEBUG = True
 
-ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]  # ip host
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]  # Адрес сервера
 
 INSTALLED_APPS = [
     # basic apps
@@ -88,10 +88,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en'  # language
+LANGUAGE_CODE = 'en'  # Язык
 
-TIME_ZONE = 'Europe/Moscow'  # time zone Moscow
-CELERY_TIMEZONE = 'Europe/Moscow'
+TIME_ZONE = 'Europe/Moscow'  # Часовой пояс
+CELERY_TIMEZONE = 'Europe/Moscow'  # Часовой пояс для celery
 
 USE_I18N = True
 
@@ -99,19 +99,17 @@ USE_TZ = False
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR/'static'
-]
+STATICFILES_DIRS = [BASE_DIR/'static']  # Выгрузка файлов
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'user.CustomUser'  # add custom model user
+AUTH_USER_MODEL = 'user.CustomUser'  # Переопределение базовой модели User
 
-MEDIA_ROOT = BASE_DIR / 'upload_files'  # add location files absolut
-MEDIA_URL = 'upload_files/'  # add location files
+MEDIA_ROOT = BASE_DIR / 'upload_files'  # Абсолютный путь хранилища
+MEDIA_URL = 'upload_files/'  # Относительный путь хранилища
 
 customColorPalette = [
-    # add ckeditor setting
+    # Настройки CKEditor
     {
         'color': 'hsl(4, 90%, 58%)',
         'label': 'Red'
@@ -138,10 +136,10 @@ customColorPalette = [
     },
 ]
 
-CKEDITOR_5_CUSTOM_CSS = 'css/ckeditor/default_dark.css'  # add ckeditor setting
+CKEDITOR_5_CUSTOM_CSS = 'css/ckeditor/default_dark.css'  # Настройки CKEditor
 
 CKEDITOR_5_CONFIGS = {
-    # add ckeditor setting
+    # Настройки CKEditor
     'default': {
         'toolbar': ['heading', '|', 'bold', 'italic', 'link',
                     'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', ],
@@ -201,21 +199,22 @@ CKEDITOR_5_CONFIGS = {
         }
     }
 }
-
+# Подключение почты по SSL (yandex)
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = True
 
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')  # Почта установленная по умолчанию
 
 LOGIN_URL = '/'
 
-FILTERS_EMPTY_CHOICE_LABEL = 'All entries'
+FILTERS_EMPTY_CHOICE_LABEL = 'All entries'  # Пустые поля в форме фильтра
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
+# Подключение celery при поддержке redis
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
+CELERY_ACCEPT_CONTENT = [os.getenv('CELERY_ACCEPT_CONTENT')]
+CELERY_TASK_SERIALIZER = os.getenv('CELERY_TASK_SERIALIZER')
+CELERY_RESULT_SERIALIZER = os.getenv('CELERY_RESULT_SERIALIZER')

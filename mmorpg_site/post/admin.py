@@ -6,6 +6,7 @@ from .forms import AdminPostCreationForm, AdminPostChangeForm
 
 
 class AdminPostModel(PostAdmin):
+    """Определение админ модели объявлений"""
     add_form_template = 'admin_add/add_form.html'
     fieldsets = (
         (None, {'fields': ('title', 'text', 'category')}),
@@ -22,4 +23,4 @@ class AdminPostModel(PostAdmin):
     filter_horizontal = []
 
 
-admin.site.register(Post, AdminPostModel)
+admin.site.register(Post, AdminPostModel)  # Регистрация модели "Объявления" в админ панель

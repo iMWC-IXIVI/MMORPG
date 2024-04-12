@@ -8,7 +8,7 @@ from .constant import CHOICE
 
 
 class Post(models.Model):
-
+    """Модель объявления"""
     title = models.CharField(max_length=100, verbose_name='Title')
     text = fields.CKEditor5Field('Text', config_name='extends')
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

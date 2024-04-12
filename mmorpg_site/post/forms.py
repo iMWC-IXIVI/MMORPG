@@ -7,19 +7,21 @@ from .models import Post
 
 
 class AdminPostCreationForm(forms.ModelForm):
+    """Форма созданий объявлений через админ панель"""
     class Meta:
         model = Post
         fields = ['title', 'text', 'user', 'category']
 
 
 class AdminPostChangeForm(forms.ModelForm):
+    """Форма изменения объявлений через админ панель"""
     class Meta:
         model = Post
         fields = ['title', 'text']
 
 
 class PostCreationForm(forms.ModelForm):
-
+    """Форма созданий объявлений. Дополнительные настройки CKEditor5"""
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["text"].required = False

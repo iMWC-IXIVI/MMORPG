@@ -10,11 +10,14 @@ from .models import EmailAccept
 from dotenv import load_dotenv
 
 
-load_dotenv()
+load_dotenv()  # Загрузка переменных окружения
 
 
 @receiver(post_save, sender=EmailAccept)
 def accept_mail(sender, instance, created, **kwargs):
+    """Отправка писем пользователями, которые:
+    1. Регистрируются на форуме.
+    2. Авторизуются на форуме"""
 
     if instance.username:
         subject = 'Activate register'
